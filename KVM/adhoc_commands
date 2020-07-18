@@ -1,8 +1,14 @@
-Before running below commands, you need to create a ansible.cfg where you mention the inventory file which will be used while running anisble ad-hoc commands
+# Before running below commands, you need to create a ansible.cfg where you mention the inventory file which will be used while running anisble ad-hoc commands.
 
-# *List the VMs on the KVM host or hosts*
-` ansible beaker -m virt -a "command=list_vms"`
-This list can be then used to create inventory file for VMs.
+# List the VMs on the KVM host or hosts
+$ ansible <kvm-host> -m virt -a "command=list_vms"
+  #This list can be then used to create inventory file for VMs.
 
 # Check VM status
-` ansible beaker -m virt -a "name=<vm-name> command=status" `
+$ ansible <kvm-host> -m virt -a "name=<vm-name> command=status"
+
+# Create a VM from existing xml with define
+$ ansible <kvm-host> -m virt -a "command=define xml={{ lookup('file', 'kmash-vm.xml') }}"
+
+# Create a VM from existing xmal with create
+$ ansible <kvm-host> -m virt -a "command=create guest=kmash-vm uri=qemu:///system  xml={{ lookup('file', 'kmash-vm.xml') }}"
