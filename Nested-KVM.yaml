@@ -26,3 +26,14 @@
           options kvm-intel ept=1
     - copy: content="{{ file_content }}" dest="{{ remote_file_path }}"
       when: file_path.stat.exists == true
+
+# Install virtualization packages
+- name: install the 'Virtualization' package group
+  yum:
+    name: "@Virtualization Tools"
+    state: present
+
+- name: start libvirtd
+  service:
+    name: libvirtd
+    state: started
