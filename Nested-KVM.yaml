@@ -28,12 +28,12 @@
       when: file_path.stat.exists == true
 
 # Install virtualization packages
-- name: install the 'Virtualization' package group
-  yum:
-    name: "@Virtualization Tools"
-    state: present
+    - name: install the 'Virtualization' package group
+      yum:
+       name: "@Virtualization Tools"
+       state: present
 
-- name: start libvirtd
-  service:
-    name: libvirtd
-    state: started
+   - name: start libvirtd
+     service:
+      name: libvirtd
+      state: started
